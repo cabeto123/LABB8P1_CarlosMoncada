@@ -54,6 +54,12 @@ public class Lab8P1_CarlosMoncada {
                         for (int i = 0; i < libros.size(); i++) {
                             System.out.println(libros.get(i));
                         }
+                        if (usuarios.size() > 0) {
+                            System.out.println("Usuarios Disponibles");
+                            for (int i = 0; i < usuarios.size(); i++) {
+                                System.out.println(usuarios.get(i).nombreusuario);
+                            }
+                        }
                         System.out.println("Digite su nombre");
                         String nombre = entrada.nextLine();
                         nombre = entrada.nextLine();
@@ -78,26 +84,39 @@ public class Lab8P1_CarlosMoncada {
 
                     } else if (opcioncase2 == 4) {
                         System.out.println("Devolver libros");
+                        if (usuarios.size() > 0) {
+                            System.out.println("Usuarios Disponibles");
+                            for (int i = 0; i < usuarios.size(); i++) {
+                                System.out.println(usuarios.get(i).nombreusuario);
+                            }
+                        }
                         System.out.println("Digite su nombre: ");
                         String nombre = entrada.nextLine();
+                        nombre = entrada.nextLine();
                         System.out.println("Digite el titulo del libro que va a devolver");
                         String titulo = entrada.nextLine();
                         System.out.println("Digite el autor del libro que va a devolver");
                         String autor = entrada.nextLine();
                         boolean bandera = false;
                         for (int i = 0; i < libros.size(); i++) {
-                            if ((titulo.equalsIgnoreCase(libros.get(i).titulo) == true) && (autor.equalsIgnoreCase(libros.get(i).autor))) {
+                            if ((titulo.equalsIgnoreCase(usuarios.get(i).titulo) == true) && (autor.equalsIgnoreCase(usuarios.get(i).autor)==true)) {
                                 bandera = true;
                             }
                         }
-                        if (bandera == false) {
-                            System.out.println("No esta ese libro");
-                        } else {
+                        if (bandera == true) {
                             libros.add(new Libro(autor, titulo));
                             usuarios.remove(new Usuario(nombre, titulo, autor));
+                        } else {
+                            System.out.println("EL libro no esta");
                         }
 
                     } else if (opcioncase2 == 5) {
+                        if (usuarios.size() > 0) {
+                            System.out.println("Usuarios Disponibles");
+                            for (int i = 0; i < usuarios.size(); i++) {
+                                System.out.println(usuarios.get(i).nombreusuario);
+                            }
+                        }
 
                         System.out.println("Digite su nombre: ");
                         String nombre = entrada.nextLine();
@@ -238,37 +257,29 @@ public class Lab8P1_CarlosMoncada {
         System.out.println("Digite el nombre de su pedido");
         String nombrepedidosss = entrada.nextLine();
         int sumaprecio = 0;
-        boolean bandera=false;
+        boolean bandera = false;
         for (int i = 0; i < pedidos.size(); i++) {
             if (nombrepedidosss.equalsIgnoreCase(pedidos.get(i).nombrepedido)) {
-                bandera=true;
+                bandera = true;
             }
         }
-        if (bandera==true) {
-        for (int i = 0; i < pedidos.size(); i++) {
-            if (nombrepedidosss.equalsIgnoreCase(pedidos.get(i).nombrepedido)) {
+        if (bandera == true) {
+            for (int i = 0; i < pedidos.size(); i++) {
+                if (nombrepedidosss.equalsIgnoreCase(pedidos.get(i).nombrepedido)) {
 
-                ArrayList<Pedido> productos = pedidos.get(i).productos;
-                for (int j = 0; j < productos.size(); j++) {
-                    System.out.println("Nombre del producto: " + productos.get(j).nombreproducto + " precio de producto " + productos.get(j).precio);
-                    sumaprecio += productos.get(j).precio;
+                    ArrayList<Pedido> productos = pedidos.get(i).productos;
+                    for (int j = 0; j < productos.size(); j++) {
+                        System.out.println("Nombre del producto: " + productos.get(j).nombreproducto + " precio de producto " + productos.get(j).precio);
+                        sumaprecio += productos.get(j).precio;
+                    }
+
                 }
 
             }
-
-        }
-        System.out.println("Este es el total: " + sumaprecio); 
-        }else {
+            System.out.println("Este es el total: " + sumaprecio);
+        } else {
             System.out.println("Ese pedido no existe");
         }
-        
-        
-        
-        
-        
-        
-
-      
 
     }
 
@@ -280,27 +291,26 @@ public class Lab8P1_CarlosMoncada {
         }
         System.out.println("Digite el nombre de su pedido: ");
         String nombrepedido = entrada.nextLine();
-        boolean bandera=false;
+        boolean bandera = false;
         for (int i = 0; i < pedido.size(); i++) {
             if (nombrepedido.equalsIgnoreCase(pedido.get(i).nombrepedido)) {
-                bandera=true;
+                bandera = true;
             }
         }
-        if (bandera==true) {
-        for (int i = 0; i < pedido.size(); i++) {
-            if (nombrepedido.equalsIgnoreCase(pedido.get(i).nombrepedido)) {
-                ArrayList<Pedido> productos = pedido.get(i).productos;
-                for (int j = 0; j < productos.size(); j++) {
-                    System.out.println(productos.get(j));
+        if (bandera == true) {
+            for (int i = 0; i < pedido.size(); i++) {
+                if (nombrepedido.equalsIgnoreCase(pedido.get(i).nombrepedido)) {
+                    ArrayList<Pedido> productos = pedido.get(i).productos;
+                    for (int j = 0; j < productos.size(); j++) {
+                        System.out.println(productos.get(j));
+                    }
+
                 }
 
             }
-
-        }    
-        }else {
+        } else {
             System.out.println("Ese pedido no existe");
         }
-        
 
     }
 
